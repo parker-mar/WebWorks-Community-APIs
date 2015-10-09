@@ -90,6 +90,7 @@ namespace webworks {
             std::string NowPlayingGetSourceAddress();
             std::string NowPlayingGetDuration();
             std::string NowPlayingGetPosition();
+            std::string NowPlayingGetState();
             void NowPlayingSetMetadata(const std::string& callbackId, const std::string& data);
 
         };

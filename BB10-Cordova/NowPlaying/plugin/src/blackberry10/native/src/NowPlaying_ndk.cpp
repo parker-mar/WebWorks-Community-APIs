@@ -100,7 +100,33 @@ namespace webworks {
        return s.toUtf8().constData();
    }
 
-
+   string NowPlayingNDK::NowPlayingGetState(){
+    string mediaState;
+    int medState = mp->mediaState();
+    switch(medState){
+      case 0:
+        mediaState = "Unprepared";
+        break;
+      case 1:
+        mediaState = "Prepared";
+        break;
+      case 2:
+        mediaState = "Started";
+        break;
+      case 3:
+        mediaState = "Paused";
+        break;
+      case 4:
+        mediaState = "Stopped";
+        break;
+      default:
+        mediaState = "Media State is unknown";
+        break;
+      }
+      string acquired = npc->isAcquired() ? "True" : "False";
+      string preempted = npc->isPreempted() ? "True" : "False";
+      return mediaState + " " + acquired + " " + preempted;
+   }
 
 
    void NowPlayingNDK::play(){

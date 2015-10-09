@@ -110,7 +110,10 @@ string NowPlayingJS::InvokeMethod(const string& command) {
     }else if(strCommand=="NowPlayingGetPosition"){
         result = m_NowPlayingMgr->NowPlayingGetPosition();
         return result;
-    }else{
+    } else if(strCommand=="NowPlayingGetState"){
+        result = m_NowPlayingMgr->NowPlayingGetState();
+        return result;
+    } else{
         result = "Invalid Method " + strCommand;
     }
 

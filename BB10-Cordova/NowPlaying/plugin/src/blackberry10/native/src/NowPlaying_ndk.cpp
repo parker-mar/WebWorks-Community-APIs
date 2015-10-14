@@ -126,8 +126,7 @@ namespace webworks {
       string acquired = npc->isAcquired() ? "True" : "False";
       string preempted = npc->isPreempted() ? "True" : "False";
       return mediaState + " " + acquired + " " + preempted;
-   }
-
+    }
 
    void NowPlayingNDK::play(){
       mp->play();

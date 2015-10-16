@@ -38,6 +38,16 @@ var app = {
 		app.receivedEvent("deviceready");
 	},
 
+	var jsonData = {
+      "Title": "MyTitlePlay",
+      "Artist": "MyArtistPlay",
+      "Album": "MyAlbumPlay"
+    };
+
+	var onSuc = function(data) {
+	  return data;
+	}
+
 	// Update DOM on a Received Event
 	receivedEvent: function (id) {
 		var parentElement = document.getElementById(id);
@@ -179,13 +189,7 @@ var app = {
 
 
 	playButtonClick: function () {
-		var jsonData = {
-			"Title": "MyTitlePlay",
-			"Artist": "MyArtistPlay",
-			"Album": "MyAlbumPlay"
-		};
-
-		app.writeOut(com.blackberry.community.nowplaying.NowPlayingPlay(app.sampleAsyncCallback, jsonData));
+		app.writeOut(com.blackberry.community.nowplaying.NowPlayingPlay(onSuc, onSuc, jsonData));
 	},
 
 	pauseButtonClick: function () {

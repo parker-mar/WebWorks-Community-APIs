@@ -18,6 +18,12 @@ var _self = {},
     _ID = "com.blackberry.community.nowplaying",
     exec = cordova.require("cordova/exec");
 
+  function invokeCallback (callback, args) {
+		if (callback && typeof callback === "function") {
+			callback(args);
+		}
+	} 
+
 	_self.NowPlayingSetMusic = function (input) {
 		var result,
 			success = function (data, response) {
@@ -94,19 +100,12 @@ var _self = {},
 		return result;
 	};
 
-
-	_self.NowPlayingPlay = function (callback, input) {
-		var result,
-			success = function (data, response) {
-				result = data;
-				//var json = JSON.parse(data);
-				//callback(json);
-			},
-			fail = function (data, response) {
-				console.log("Error: " + data);
-			};
-		exec(success, fail, _ID, "NowPlayingPlay", { input: input });
-		return result;
+	_self.NowPlayingPlay = function (onSuccess, onFail, input) {
+		exec(function(result){
+			invokeCallback(onSuccess, result);
+			}, function(error){
+				invokeCallback(onFail, error);
+			}, _ID, "NowPlayingPlay", { input: input });
 	};
 
 	_self.NowPlayingPause = function (callback) {
